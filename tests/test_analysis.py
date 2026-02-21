@@ -1,7 +1,6 @@
 import pytest
 from analysis import GDPAverageAnalyzer, get_analyzer
 
-
 class TestGDPAverageAnalyzer:
     @pytest.fixture
     # Создание экземпляра анализатора для тестирования
@@ -30,7 +29,7 @@ class TestGDPAverageAnalyzer:
         result = analyzer.analyze(data)
         assert len(result) == 1
         expected_avg = (25462 + 23315 + 22994) / 3
-        assert result[0]['average_gdp'] == expected_avg
+        assert result[0]['average_gdp'] == round(expected_avg, 2)
     
     # Тест с несколькими странами
     def test_multiple_countries(self, analyzer):
@@ -94,3 +93,4 @@ def test_get_analyzer():
     
     # Несуществующий анализатор
     assert get_analyzer('invalid-report') is None
+
