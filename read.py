@@ -23,3 +23,16 @@ class CSVDataReader:
                 data.append(cleaned_row)
         
         return data
+
+# Чтение нескольких CSV файлов и объединение их данных
+    def read_multiple_files(self, file_paths: List[str]) -> List[Dict[str, Any]]:
+        all_data = []
+        for file_path in file_paths:
+            try:
+                file_data = self.read_file(file_path)
+                all_data.extend(file_data)
+                print(f"Загружено {len(file_data)} строк из {file_path}\n")
+            except (FileNotFoundError, csv.Error) as e:
+                print(f"Не удалось прочитать {file_path}: {e}")
+        
+        return all_data
